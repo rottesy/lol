@@ -45,7 +45,7 @@ class Array
         return *this;
     }
 
-    friend Array operator&(const Array &lhs,const Array &rhs) 
+    friend Array operator&(const Array &lhs, const Array &rhs)
     {
         Array result;
         int count = 0;
@@ -88,7 +88,7 @@ class Array
         return result;
     }
     friend void input(Array &arr, const char *msg);
-    friend void show(const Array& arr, const char *msg);
+    friend void show(const Array &arr, const char *msg);
 };
 
 int getNumber(const char *msg)
@@ -102,7 +102,8 @@ int getNumber(const char *msg)
         if (std::cin.peek() == '\n' || std::cin.peek() == ' ' || std::cin.fail())
         {
             std::cin.clear();
-            while (std::cin.get() != '\n' && !std::cin.eof());
+            while (std::cin.get() != '\n' && !std::cin.eof())
+                ;
             std::cout << "\nError, invalid input. Please try again: ";
             continue;
         }
@@ -113,12 +114,17 @@ int getNumber(const char *msg)
     }
 }
 
-void input(Array &arr, const char *msg) {
-    while (true) {
+void input(Array &arr, const char *msg)
+{
+    while (true)
+    {
         arr.size = getNumber("Please enter array size: ");
-        if (arr.size <= 0) {
+        if (arr.size <= 0)
+        {
             std::cout << "Error, size < 0, please try again." << "\n";
-        } else {
+        }
+        else
+        {
             break;
         }
     }
@@ -127,22 +133,23 @@ void input(Array &arr, const char *msg) {
 
     arr.data = new int[arr.size];
 
-    for (int i = 0; i < arr.size; i++) {
+    for (int i = 0; i < arr.size; i++)
+    {
         std ::cout << "Element " << i + 1 << ">> ";
         arr.data[i] = getNumber("");
     }
 }
 
-void show(const Array& arr, const char *msg) {
+void show(const Array &arr, const char *msg)
+{
     std::cout << msg;
 
-    for (int i = 0; i < arr.size; i++) {
+    for (int i = 0; i < arr.size; i++)
+    {
         std::cout << arr.data[i] << " ";
     }
 
     std::cout << "\n";
 }
 
-int main() {
-    return 0;
-}
+int main() { return 0; }
