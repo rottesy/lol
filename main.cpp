@@ -45,26 +45,26 @@ class Array
         return *this;
     }
 
-    Array operator&(const Array &other) const
+    friend Array operator&(const Array &lhs,const Array &rhs) 
     {
         Array result;
         int count = 0;
 
-        if (size == 0 || other.size == 0)
+        if (lhs.size == 0 || rhs.size == 0)
         {
             return result;
         }
 
-        bool *used = new bool[other.size];
-        for (int i = 0; i < other.size; i++)
+        auto *used = new bool[rhs.size];
+        for (int i = 0; i < rhs.size; i++)
         {
             used[i] = false;
         }
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < lhs.size; i++)
         {
-            for (int j = 0; j < other.size; j++)
+            for (int j = 0; j < rhs.size; j++)
             {
-                if (data[i] == other.data[j] && !used[j])
+                if (lhs.data[i] == rhs.data[j] && !used[j])
                 {
                     count++;
                     used[j] = true;
@@ -77,11 +77,11 @@ class Array
 
         int index = 0;
 
-        for (int i = 0; i < other.size; i++)
+        for (int i = 0; i < rhs.size; i++)
         {
             if (used[i])
             {
-                result.data[index++] = other.data[i];
+                result.data[index++] = rhs.data[i];
             }
         }
         delete[] used;
@@ -102,7 +102,7 @@ int getNumber(const char *msg)
         if (std::cin.peek() == '\n' || std::cin.peek() == ' ' || std::cin.fail())
         {
             std::cin.clear();
-            while (std::cin.get() != '\n' && !std::cin.eof()) {} 
+            while (std::cin.get() != '\n' && !std::cin.eof());
             std::cout << "\nError, invalid input. Please try again: ";
             continue;
         }
@@ -143,4 +143,6 @@ void show(const Array& arr, const char *msg) {
     std::cout << "\n";
 }
 
-int main() {}
+int main() {
+    return 0;
+}
