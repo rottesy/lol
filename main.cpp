@@ -13,7 +13,7 @@ class Array
 
   public:
     Array() = default;
-    Array(int sizeOfArray) : size(sizeOfArray)
+    explicit Array(int sizeOfArray) : size(sizeOfArray)
     {
         data = new int[size];
         for (int i = 0; i < size; i++)
