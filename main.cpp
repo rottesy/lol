@@ -1,5 +1,5 @@
 #include <iostream>
-#include <locale>
+
 inline constexpr const int kMaxInt = 2147483647;
 inline constexpr const int kMinInt = -2147483648;
 
