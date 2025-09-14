@@ -152,4 +152,112 @@ void show(const Array &arr, const char *msg)
     std::cout << "\n";
 }
 
-int main() { return 0; }
+using namespace std;
+
+void showMainMenu()
+{
+    cout << "\n=== ARRAY OPERATIONS MENU ===" << endl;
+    cout << "1. Work with Array 1" << endl;
+    cout << "2. Work with Array 2" << endl;
+    cout << "3. Perform intersection (Array1 & Array2)" << endl;
+    cout << "4. Show both arrays" << endl;
+    cout << "0. Exit" << endl;
+    cout << "Choose option: ";
+}
+
+void showArrayMenu(Array &arr, const char *arrayName)
+{
+    cout << "\n=== " << arrayName << " OPERATIONS ===" << endl;
+    cout << "1. Input " << arrayName << endl;
+    cout << "2. Show " << arrayName << endl;
+    cout << "3. Clear " << arrayName << endl;
+    cout << "0. Back to main menu" << endl;
+    cout << "Choose option: ";
+}
+
+void handleArrayOperations(Array &arr1, Array &arr2)
+{
+    int choice;
+
+    do
+    {
+        showMainMenu();
+        choice = getNumber("");
+
+        switch (choice)
+        {
+            case 1:
+                showArrayMenu(arr1, "ARRAY 1");
+                switch (getNumber(""))
+                {
+                    case 1:
+                        input(arr1, "Enter Array 1 elements:\n");
+                        break;
+                    case 2:
+                        show(arr1, "Array 1: ");
+                        break;
+                    case 3:
+                        arr1 = Array(); // Clear array
+                        cout << "Array 1 cleared" << endl;
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        cout << "Invalid choice!" << endl;
+                }
+                break;
+
+            case 2:
+                showArrayMenu(arr2, "ARRAY 2");
+                switch (getNumber(""))
+                {
+                    case 1:
+                        input(arr2, "Enter Array 2 elements:\n");
+                        break;
+                    case 2:
+                        show(arr2, "Array 2: ");
+                        break;
+                    case 3:
+                        arr2 = Array(); // Clear array
+                        cout << "Array 2 cleared" << endl;
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        cout << "Invalid choice!" << endl;
+                }
+                break;
+
+            case 3:
+            {
+                Array result = arr1 & arr2;
+                show(result, "Intersection result: ");
+                break;
+            }
+
+            case 4:
+                show(arr1, "Array 1: ");
+                show(arr2, "Array 2: ");
+                break;
+
+            case 0:
+                cout << "Exiting program..." << endl;
+                break;
+
+            default:
+                cout << "Invalid choice! Please try again." << endl;
+        }
+    } while (choice != 0);
+}
+
+void handleMainMenu()
+{
+    Array arr1, arr2;
+    handleArrayOperations(arr1, arr2);
+}
+
+int main()
+{
+    handleMainMenu();
+    return 0;
+}
